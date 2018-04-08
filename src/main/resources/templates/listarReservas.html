@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Reservas</title>
+<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}"
+	rel="stylesheet" />
+</head>
+<div sec:authorize="hasRole('USER')">
+	<form class="form-inline" method="POST" style="margin: 20px 0"
+		th:object="${reserva}">
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="Nome"
+				th:field="*{responsavel.nome}" /> <input type="text"
+				class="form-control" placeholder="Número Pessoas"
+				th:field="*{numeroPessoas}" /> <input type="text"
+				class="form-control" placeholder="Telefone"
+				th:field="*{responsavel.telefone}" /> <input type="text"
+				class="form-control" placeholder="Documento (Opcional)"
+				th:field="*{responsavel.documento}" /> 
+				<input type="date"
+				class="form-control" placeholder="Data" 
+				th:field="*{dataReserva}" />
+			<input type="time" class="form-control" placeholder="Hora"
+				th:field="*{horario}" />
+			<button type="submit" class="btn btn-primary">Reservar</button>
+		</div>
+	</form>
+</div>
+
+<body>
+	<div class="panel panel-default" style="margin: 10px">
+		<div class="panel-heading">
+			<h1 class="panel-title">Reservas</h1>
+		</div>
+		<div class="panel-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Nº Reserva</th>
+						<th>Nome</th>
+						<th>Telefone</th>
+						<th>Nº Pessoas</th>
+						<th>Data</th>
+						<th>Hora</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="reserva: ${reservas}">
+						<td th:text="${reserva.id}"></td>
+						<td th:text="${reserva.responsavel.nome}"></td>
+						<td th:text="${reserva.responsavel.telefone}"></td>
+						<td th:text="${reserva.numeroPessoas}"></td>
+						<td th:date="${reserva.dataReserva}"></td>
+						<td th:time="${reserva.horario}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Sign Out" />
+	</form>
+</body>
+</html>

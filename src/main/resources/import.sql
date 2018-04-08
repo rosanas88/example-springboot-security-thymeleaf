@@ -1,0 +1,3 @@
+insert into reserva (id, nome_responsavel, telefone_responsavel, numero_pessoas, data_reserva, horario) values (1, 'Pedro', '916 558 888', 2, '2018-03-21', '12:00');
+insert into reserva (id, nome_responsavel, telefone_responsavel ,numero_pessoas, data_reserva, horario) values (2, 'Maria', '916 777 888', 3, '2018-03-25', '20:00');
+insert into reserva (id, nome_responsavel, telefone_responsavel, numero_pessoas, data_reserva, horario) values (3, 'Ricardo','999 558 888', 1,'2018-04-28', '21:00');
